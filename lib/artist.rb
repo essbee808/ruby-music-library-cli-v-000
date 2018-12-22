@@ -7,15 +7,15 @@ class Artist
   attr_accessor :name, :songs
   attr_reader :songs
   
-  @@all = []
+  @@all = [] #=> Class Variable (property of the class itself)
 
   def initialize(name)
     @name = name
     @songs = [] #=> store songs in this array
-    save
+    save #=> each instance will be saved in the all class variable
   end
   
-  def self.all
+  def self.all #=> Class Reader; exposing through this method the value inside this variable
     @@all
   end
   
@@ -25,6 +25,10 @@ class Artist
   
   def save
     @@all << self
+  end
+  
+  def self.count
+    @@all.size
   end
   
   def self.create(name)
